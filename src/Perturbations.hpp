@@ -102,7 +102,7 @@ Mat* Rotate(Mat img[num_channels], DI epsilon, int padding = 5) {
             auto [x, y] = rc_as_xy(row, col, img_length_wpadding, img_length_wpadding);
             auto [x_orig, y_orig] = inv_rotate(x, y, epsilon);
 
-            for (int c = 0; c < 3; ++c) {
+            for (int c = 0; c < num_channels; ++c) {
                 rotated_img[c](row - padding, col - padding) = min(1, max(0, interpolate_using_join(padded_img[c], x_orig, y_orig)));
             }
         }
